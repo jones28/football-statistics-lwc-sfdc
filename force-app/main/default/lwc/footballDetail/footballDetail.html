@@ -1,0 +1,73 @@
+<template>
+    <lightning-card title="Player Details" icon-name="standard:avatar">
+        <template if:true={player}>
+            <div style="background-color: rgb(22, 50, 92);padding:10px;"></div>
+            <lightning-record-view-form record-id={player.Id} object-api-name="Contact">
+                <div class="slds-box slds-p-around_none slds-m-top_x-small slds-m-bottom_medium slds-m-horizontal_none">
+                    <lightning-layout padding="around-small" multiple-rows>
+                        <lightning-output-field field-name="Profile__c"></lightning-output-field>
+                        <lightning-output-field field-name="Name"></lightning-output-field>
+                        <lightning-output-field field-name="Title"></lightning-output-field>
+                        <lightning-output-field field-name="Club__c"></lightning-output-field>
+                        <lightning-output-field field-name="Birthdate"></lightning-output-field>
+                </lightning-layout>
+                </div>
+            </lightning-record-view-form>
+            <lightning-button-group class="slds-align_absolute-center" >
+                <lightning-button label="Description" icon-name="utility:notebook" variant="brand-outline" onclick={handleStats}></lightning-button>
+                <lightning-button label="Stats" icon-name="utility:rows" variant="brand" onclick={handleEdit}></lightning-button>
+            </lightning-button-group>
+        </template>
+    </lightning-card>
+    <template if:true={show}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+           <div class="slds-modal__container">
+              <header class="slds-modal__header">
+                 <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={handleClose}>
+                    <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse" size="small" ></lightning-icon>
+                    <span class="slds-assistive-text">Close</span>
+                 </button>
+                 <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Player Statistics</h2>
+              </header>
+              <div style="background-color:rgb(255, 215, 154)" class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                <lightning-badge style="background-color:sandybrown" label={player.Name}></lightning-badge>
+                <lightning-badge label={player.Club__c} class="slds-badge_inverse"></lightning-badge>
+                <br><br>
+                <p>{player.Description}</p><br><br>
+                <p style="color:rgb(24, 63, 1);">Appearances :<lightning-badge style="background-color:rgb(201, 255, 131)" label={player.Appearances__c}></lightning-badge></p><br>
+                <p style="color:rgb(24, 63, 1);">Goals :<lightning-badge style="background-color:rgb(201, 255, 131)" label={player.Goals__c}></lightning-badge></p><br>
+                <p style="color:rgb(24, 63, 1);">Assists :<lightning-badge style="background-color:rgb(201, 255, 131)" label={player.Assists__c}></lightning-badge></p><br>
+              </div>
+              <footer class="slds-modal__footer">
+                  <lightning-button-group>
+                      <lightning-button label="Cancel" variant="brand-outline" onclick={handleClose}></lightning-button>
+                  </lightning-button-group>
+              </footer>
+           </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+     </template>
+     <template if:true={edit}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+           <div class="slds-modal__container">
+              <header class="slds-modal__header">
+                 <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={handleClose}>
+                    <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse" size="small" ></lightning-icon>
+                    <span class="slds-assistive-text">Close</span>
+                 </button>
+                 <h2 id="modal-heading-011" class="slds-text-heading_medium slds-hyphenate">Player Statistics</h2>
+              </header>
+              <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-11">
+                <lightning-record-form record-id={player.Id} object-api-name="Contact" mode="edit" fields={fields} onsuccess={handleSuccess}>
+                </lightning-record-form>
+              </div>
+              <footer class="slds-modal__footer">
+                  <lightning-button-group>
+                      <lightning-button label="Cancel" variant="brand-outline" onclick={handleClose}></lightning-button>
+                  </lightning-button-group>
+              </footer>
+           </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+     </template>
+</template>

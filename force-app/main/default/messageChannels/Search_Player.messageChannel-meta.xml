@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<LightningMessageChannel xmlns="https://soap.sforce.com/2006/04/metadata">
+    <masterLabel>Search Player</masterLabel>
+    <isExposed>true</isExposed>
+    <description>Message Channel to pass search players</description>
+    <lightningMessageFields>
+        <fieldName>players</fieldName>
+    </lightningMessageFields>
+</LightningMessageChannel>

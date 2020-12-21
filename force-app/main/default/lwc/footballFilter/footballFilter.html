@@ -1,0 +1,19 @@
+<template>
+    <div class="slds-p-around_medium" style="border-radius: 10px;background-color: rgb(22, 50, 92);">
+        <lightning-layout size="12">    
+            <lightning-layout-item size="6">
+                <lightning-button-group class="slds-p-around_medium" style="background-color: rgb(22, 50, 92);">
+                    <lightning-button variant="inverse" label="Forward" onclick={handleForward}></lightning-button>
+                    <lightning-button variant="inverse" label="Mid-Fielder" onclick={handleMiddle}></lightning-button>
+                    <lightning-button variant="inverse" label="Defender" onclick={handleDefender}></lightning-button>
+                    <lightning-button variant="inverse" label="Goal Keeper" onclick={handleKeeper}></lightning-button>
+                    <lightning-button variant="inverse" label="Coach" onclick={handleCoach}></lightning-button>
+                    <lightning-button variant="inverse" label="Reset" onclick={handleDefault}></lightning-button>
+                </lightning-button-group>
+            </lightning-layout-item>
+            <lightning-layout-item size="6">
+                <lightning-input type="search" placeholder="Search" onchange={handleSearch}></lightning-input>
+            </lightning-layout-item>
+        </lightning-layout>
+    </div> 
+</template>

@@ -1,0 +1,20 @@
+<template>
+    <lightning-layout>
+        <lightning-layout-item size="6">
+            <lightning-card title="Football Squad" icon-name="custom:custom48">
+                <template if:true={players}>    
+                    <lightning-datatable
+                            key-field="Id"
+                            data={players}
+                            hide-checkbox-column="true"
+                            columns={columns}
+                            onrowaction={handleRowAction}>
+                    </lightning-datatable>
+                </template>
+            </lightning-card>
+        </lightning-layout-item>
+        <lightning-layout-item size="6" padding="horizontal-small">
+            <c-football-detail player={player}></c-football-detail>
+        </lightning-layout-item>
+    </lightning-layout>
+</template>
